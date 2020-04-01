@@ -10,7 +10,7 @@ export default function CritterGrid({ critters, currentMonth, hemisphere }) {
       gridTemplateColumns="repeat(auto-fit, minmax(260px, 1fr))"
       border="1px solid #e3d9a8"
     >
-      {critters.slice(0, 20).map(critter => (
+      {critters.map(critter => (
         <CritterCard
           key={critter.name}
           critter={critter}

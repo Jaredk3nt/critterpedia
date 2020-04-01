@@ -10,10 +10,12 @@ import TimeScale from './TimeScale';
 // Media
 import bugInactive from '../media/bug-inactive.png';
 import fishInactive from '../media/fish-inactive.png';
+// Utils
+import { parseSeason } from '../utils/season';
 
 export default function CritterCard({ critter, currentMonth, hemisphere }) {
-  const season = critter.season[hemisphere];
-  const hours = critter.time[hemisphere];
+  const season = parseSeason(critter.season[hemisphere]);
+  const hours = critter.time;
   const active = season ? season.includes(currentMonth) : false;
 
   return (
@@ -47,7 +49,7 @@ export default function CritterCard({ critter, currentMonth, hemisphere }) {
           <Box display="inline">
             <InfoTitle>Active Hours</InfoTitle>
           </Box>
-          <Spacer height=".25em" />
+          <Spacer height=".85em" />
           <Box width="100%">
             <TimeScale hours={hours} />
           </Box>
