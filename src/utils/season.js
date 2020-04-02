@@ -1,4 +1,8 @@
-// TODO: MAKE THESE MORE ELEGANT SO BRUTE FORCE
+export const ACTIVE_LEVELS = ['Active', 'All'];
+
+export const HEMISPHERES = ['northern', 'southern'];
+
+// TODO: MAKE THESE MORE ELEGANT, NOT SO BRUTE FORCE
 export function parseSeason(season) {
   const fullSeason = [];
   if (season === true) {

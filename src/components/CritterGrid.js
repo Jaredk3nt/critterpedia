@@ -7,7 +7,7 @@ import CritterCard from './CritterCard';
 export default function CritterGrid({ critters, currentMonth, hemisphere }) {
   return (
     <Grid
-      gridTemplateColumns="repeat(auto-fit, minmax(260px, 1fr))"
+      gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
       border="1px solid #e3d9a8"
     >
       {critters.map(critter => (

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import {
+  color,
   compose,
   layout,
   space,
@@ -8,7 +9,7 @@ import {
 } from 'styled-system';
 
 const Spacer = styled('span')(
-  compose(layout, space, position, border)
+  compose(color, layout, space, position, border)
 );
 
 export default Spacer;

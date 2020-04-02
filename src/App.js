@@ -7,18 +7,53 @@ import FilterBar from './components/FilterBar';
 import CritterGrid from './components/CritterGrid';
 // Data
 import crittersData from './critters.json';
+import {
+  HEMISPHERES,
+  ACTIVE_LEVELS,
+  parseSeason,
+  parseTime,
+} from './utils/season';
+// Intitial setup on critters
 const list = [
-  ...crittersData.bugs.map(bug => ({ ...bug, type: 'bug' })),
-  ...crittersData.fish.map(fish => ({ ...fish, type: 'fish' })),
+  ...crittersData.bugs.map(bug => ({
+    ...bug,
+    time: parseTime(bug.time),
+    season: {
+      northern: parseSeason(bug.season.northern),
+      southern: parseSeason(bug.season.southern),
+    },
+    type: 'bug',
+  })),
+  ...crittersData.fish.map(fish => ({
+    ...fish,
+    time: parseTime(fish.time),
+    season: {
+      northern: parseSeason(fish.season.northern),
+      southern: parseSeason(fish.season.southern),
+    },
+    type: 'fish',
+  })),
 ];
 const currentMonth = new Date().getMonth();
-const HEMISPHERES = ['northern', 'southern'];
+
 const engine = new Fuse(list, {
   distance: 100,
   minMatchCharLength: 2,
   threshold: 0.5,
   keys: ['name'],
 });
+
+function critterFilter({ showBugs, showFish, active, hemisphere }) {
+  return critter => {
+    return (
+      ((critter.type === 'fish' && showFish) ||
+        (critter.type === 'bug' && showBugs)) &&
+      ((active === ACTIVE_LEVELS[0] &&
+        critter.season[hemisphere].includes(currentMonth)) ||
+        active === ACTIVE_LEVELS[1])
+    );
+  };
+}
 
 function App() {
   // Ref for debouncing search results
@@ -28,13 +63,23 @@ function App() {
   const [showFish, setShowFish] = useState(true);
   // Setup state
   const [search, setSearch] = useState('');
-  const [critters, setCritters] = useState(list);
-  const [hemisphere, setHemisphere] = useState(HEMISPHERES[0]);
+  const [visibleActivity, setVisibleActivity] = useState(ACTIVE_LEVELS[0]);
+  // TODO: add sethemisphere to change seasons
+  const [hemisphere] = useState(HEMISPHERES[0]);
+  const [critters, setCritters] = useState(
+    list.filter(
+      critterFilter({
+        showBugs,
+        showFish,
+        hemisphere,
+        active: visibleActivity,
+      })
+    )
+  );
 
   useEffect(() => {
     // Handle debouncing the actual search call
     function debouncedSearch() {
-      console.log('search');
       clearTimeout(typing.current);
       typing.current = setTimeout(() => {
         typing.current = null;
@@ -43,25 +88,32 @@ function App() {
           setCritters(
             result
               .map(item => item.item)
-              .filter(critter => {
-                console.log({ type: critter.type, showFish, showBugs})
-                if (critter.type === 'fish' && !showFish) {
-                  return false;
-                }
-                if (critter.type === 'bug' && !showBugs) {
-                  return false;
-                }
-                return true;
-              })
+              .filter(
+                critterFilter({
+                  showBugs,
+                  showFish,
+                  hemisphere,
+                  active: visibleActivity,
+                })
+              )
           );
         } else {
-          setCritters(list);
+          setCritters(
+            list.filter(
+              critterFilter({
+                showBugs,
+                showFish,
+                hemisphere,
+                active: visibleActivity,
+              })
+            )
+          );
         }
       }, 250);
     }
 
     debouncedSearch();
-  }, [search, engine, showBugs, showFish]);
+  }, [search, showBugs, showFish, visibleActivity]);
 
   function handleSearch(e) {
     setSearch(e.target.value);
@@ -75,7 +127,7 @@ function App() {
         hemisphere={hemisphere}
       />
     ),
-    [critters, currentMonth, hemisphere]
+    [critters, hemisphere]
   );
 
   return (
@@ -85,10 +137,12 @@ function App() {
         onSearchChange={handleSearch}
         showBugs={showBugs}
         showFish={showFish}
+        visibleActivity={visibleActivity}
+        onVisibleActivityChange={e => setVisibleActivity(e.target.value)}
         onClickBugs={() => setShowBugs(prev => !prev)}
         onClickFish={() => setShowFish(prev => !prev)}
       />
-      <Box padding="2em">{critterGrid}</Box>
+      <Box padding={['1em', '2em']}>{critterGrid}</Box>
     </Box>
   );
 }
