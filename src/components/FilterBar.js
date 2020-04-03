@@ -12,6 +12,7 @@ import bugInactive from '../media/bug-inactive.png';
 import fishInactive from '../media/fish-inactive.png';
 // Data
 import { ACTIVE_LEVELS } from '../utils/season';
+import { SORT_TYPES } from '../utils/filters';
 
 export default function FilterBar({
   showFish,
@@ -20,12 +21,14 @@ export default function FilterBar({
   onClickFish,
   searchString,
   onSearchChange,
+  sortType,
+  onSortTypeChange,
   visibleActivity,
   onVisibleActivityChange,
 }) {
   return (
     <Box display="flex" justifyContent='center' padding={['1em', '1em 2em 0em']}>
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" width="100%">
         <Input
           value={searchString}
           onChange={onSearchChange}
@@ -52,6 +55,12 @@ export default function FilterBar({
           <Select value={visibleActivity} onChange={onVisibleActivityChange}>
             {ACTIVE_LEVELS.map(lv => (
               <option value={lv}>{lv}</option>
+            ))}
+          </Select>
+          <Spacer width=".25rem" />
+          <Select value={sortType} onChange={onSortTypeChange}>
+            {SORT_TYPES.values().map(type => (
+              <option value={type}>{type}</option>
             ))}
           </Select>
         </Box>
