@@ -30,7 +30,7 @@ export default function CritterContainer() {
         filters={state.filters}
         onSearchChange={type}
       />
-      <CritterGrid critters={state.critters} hemisphere={state.filters.hemisphere} />
+      <CritterGrid critters={state.critters} hemisphere={state.filters.hemisphere} month={state.filters.month} />
     </div>
   );
 }

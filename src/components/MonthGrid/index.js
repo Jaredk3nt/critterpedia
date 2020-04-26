@@ -3,38 +3,24 @@ import classnames from 'classnames';
 // Styles
 import './monthGrid.css';
 // Data
-const currentMonth = new Date().getMonth();
-export const months = [
-  'Jan.',
-  'Feb.',
-  'Mar.',
-  'Apr.',
-  'May',
-  'June',
-  'July',
-  'Aug.',
-  'Sept.',
-  'Oct.',
-  'Nov.',
-  'Dec.',
-];
+import { MONTHS } from '../../utils/filter';
 
-export default function MonthGrid({ season }) {
+export default function MonthGrid({ season, month }) {
   return (
     <div className="monthgrid">
-      {months.map((month, idx) => {
-        const isCurrent = idx === currentMonth;
+      {MONTHS.map((m, idx) => {
+        const isCurrent = idx === month;
         const isActive =
           season && Array.isArray(season) && season.includes(idx);
         return (
           <div
-            key={month}
+            key={m.name}
             className={classnames('monthgrid-month', {
               active: isActive,
               current: isCurrent,
             })}
           >
-            <p>{month}</p>
+            <p>{m.shortName}</p>
           </div>
         );
       })}

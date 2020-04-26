@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import CritterButton from '../CritterButton';
 // Utils
 import { SORTS } from '../../utils/sort';
-import { FILTER_TYPES } from '../../utils/filter';
+import { MONTHS, FILTER_TYPES } from '../../utils/filter';
 import { ACTIONS } from '../../containers/CritterContainer/state';
 // Styles
 import './filterBar.css';
@@ -78,7 +78,7 @@ export default function FilterBar({
               <option value="northern">Northern</option>
               <option value="southern">Southern</option>
             </select>
-            <div className="spacer" />
+            <div className="select-filters__spacer" />
             <select
               className="filterbar-select"
               value={filters.sortType}
@@ -91,6 +91,18 @@ export default function FilterBar({
             >
               {Object.values(SORTS).map((type) => (
                 <option value={type}>{type}</option>
+              ))}
+            </select>
+            <div className="select-filters__spacer" />
+            <select
+              className="filterbar-select"
+              value={filters.month}
+              onChange={(e) =>
+                dispatch({ type: ACTIONS.setMonth, month: e.target.value })
+              }
+            >
+              {MONTHS.map((month, idx) => (
+                <option value={idx}>{month.name}</option>
               ))}
             </select>
           </div>

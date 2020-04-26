@@ -22,6 +22,7 @@ export const INITIAL_STATE = {
     critterType: FILTER_TYPES.all,
     sortType: SORTS.az,
     active: true,
+    month: currentMonth,
   },
 };
 
@@ -33,7 +34,8 @@ export const ACTIONS = enums(string)(
   'setCritterType',
   'setSortType',
   'setActivity',
-  'toggleActive'
+  'toggleActive',
+  'setMonth'
 );
 
 const ACTION_MAP = {
@@ -111,10 +113,16 @@ const ACTION_MAP = {
       filters: { ...state.filters, active: !state.filters.active },
     };
   },
+  [ACTIONS.setMonth]: (state, action) => {
+    return {
+      ...state,
+      filters: { ...state.filters, month: parseInt(action.month) },
+    };
+  },
 };
 
 export function reducer(state, action) {
-  console.debug({ state, action });
+  // console.debug({ state, action });
   const reducerFn = ACTION_MAP[action.type];
   if (!reducerFn) {
     throw {

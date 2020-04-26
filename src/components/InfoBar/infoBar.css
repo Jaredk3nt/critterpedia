@@ -1,26 +1,41 @@
 .infobar {
   position: fixed;
+  display: flex;
+  visibility: visible;
   bottom: 0;
   width: 100%;
   background-color: #f6f5e1;
-  display: none;
   justify-content: space-between;
   align-items: center;
-  padding: .5em 2em;
-  box-shadow: -5px 0px 10px rgba(0,0,0,.2);
+  padding: 0.5em 2em;
+  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.2);
+  animation-name: infobar-in;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  transition: visibility 0s;
 }
-.infobar.visible {
-  display: flex;
+.infobar.invisible {
+  visibility: hidden;
+}
+
+@keyframes infobar-in {
+  from {
+    bottom: -50px;
+  }
+
+  to {
+    bottom: 0;
+  }
 }
 
 .infobar__close {
   border: none;
-  padding: .25em .5em;
+  padding: 0.25em 0.5em;
   background-color: transparent;
   font-size: 1.2rem;
-  border-radius: .125rem;
+  border-radius: 0.125rem;
 }
 .infobar__close:hover {
   cursor: pointer;
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }

@@ -1,6 +1,19 @@
 import { enums, string } from 'fun-enums';
 // Data
-const currentMonth = new Date().getMonth();
+export const MONTHS = [
+  { name: 'January', shortName: 'Jan.' },
+  { name: 'February', shortName: 'Feb.' },
+  { name: 'March', shortName: 'Mar.' },
+  { name: 'April', shortName: 'Apr.' },
+  { name: 'May', shortName: 'May' },
+  { name: 'June', shortName: 'June' },
+  { name: 'July', shortName: 'July' },
+  { name: 'August', shortName: 'Aug.' },
+  { name: 'September', shortName: 'Sept.' },
+  { name: 'October', shortName: 'Oct.' },
+  { name: 'November', shortName: 'Nov.' },
+  { name: 'December', shortName: 'Dec.' },
+]
 export const FILTER_TYPES = enums(string)('fish', 'bug', 'all', 'none');
 
 export function filterCritters(critters, filters) {
@@ -14,10 +27,10 @@ function isType(critter, { critterType }) {
   return critter.type === critterType;
 }
 
-function isActive(critter, { hemisphere, active }) {
+function isActive(critter, { hemisphere, active, month }) {
   if (!active) return true;
   return (
     critter.season[hemisphere] === true ||
-    critter.season[hemisphere].includes(currentMonth)
+    critter.season[hemisphere].includes(month)
   );
 }

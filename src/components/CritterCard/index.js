@@ -13,15 +13,15 @@ const img = {
   fish: fishImg,
 };
 
-export default function CritterCard({ critter, hemisphere }) {
+export default function CritterCard({ critter, hemisphere, month }) {
   // Memoize timescale since it shouldn't change very often
   // And it has a heavy render cost
   const critterTime = useMemo(() => {
     return <TimeScale time={critter.time} />;
   }, [critter.time]);
   const critterSeason = useMemo(() => {
-    return <MonthGrid season={critter.season[hemisphere]} />;
-  }, [critter.season, hemisphere]);
+    return <MonthGrid season={critter.season[hemisphere]} month={month} />;
+  }, [critter.season, hemisphere, month]);
 
   return (
     <div className="crittercard">
