@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Components
+import InfoBar from './components/InfoBar';
+import CritterContainer from './containers/CritterContainer';
+// Styles
+import './styles.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <>
+      <CritterContainer />
+      <InfoBar>
+        <p className="info-message">
+          Give feeback, contribute, or support this project on{' '}
+          <a href="https://github.com/Jaredk3nt/critterpedia">Github</a>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </InfoBar>
+    </>
   );
 }
 

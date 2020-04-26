@@ -1,0 +1,18 @@
+.critter-btn {
+  background-color: #f6f5e1;
+  border-radius: 50%;
+  height: 48px;
+  min-height: 48px;
+  width: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.critter-btn:hover {
+  cursor: pointer;
+}
+
+.critter-btn__img {
+  height: 32px;
+}

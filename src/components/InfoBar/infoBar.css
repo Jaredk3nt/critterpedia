@@ -1,0 +1,26 @@
+.infobar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f6f5e1;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5em 2em;
+  box-shadow: -5px 0px 10px rgba(0,0,0,.2);
+}
+.infobar.visible {
+  display: flex;
+}
+
+.infobar__close {
+  border: none;
+  padding: .25em .5em;
+  background-color: transparent;
+  font-size: 1.2rem;
+  border-radius: .125rem;
+}
+.infobar__close:hover {
+  cursor: pointer;
+  background-color: rgba(0,0,0,.05);
+}

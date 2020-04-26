@@ -1,0 +1,39 @@
+.crittercard {
+  border: 1px solid #e3d9a8;
+  padding: 1em;
+}
+
+.crittercard__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+.crittercard__header img {
+  height: 24px;
+  margin-right: .25rem;
+}
+.crittercard__header h3 {
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin: 0px;
+}
+
+.crittercard__line {
+  display: flex;
+  align-items: center;
+  margin-bottom: .25rem;
+}
+.crittercard__line--title {
+  color: rgb(68, 73, 5);
+  background-color: rgb(214, 210, 135);
+  border-radius: 0.125rem;
+  padding: 0em 0.1rem;
+  line-height: 1.2;
+  font-size: 0.9rem;
+  margin: 0px;
+}
+.crittercard__line p {
+  margin: 0px;
+  font-size: 0.9rem;
+}
+

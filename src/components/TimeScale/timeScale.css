@@ -1,0 +1,25 @@
+.timescale-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(24, 1fr);
+  border-bottom: 2px solid #e3d9a8;
+  padding-bottom: 1px;
+  padding-top: 8px;
+}
+
+.timescale-block {
+  height: 14px;
+  background-color: transparent;
+}
+
+.timescale-block.active {
+  background-color: #c3ba00;
+}
+
+.timescale-block.start {
+  border-radius: 50% 0px 0px 50%;
+}
+
+.timescale-block.end {
+  border-radius: 0px 50% 50% 0px;
+}

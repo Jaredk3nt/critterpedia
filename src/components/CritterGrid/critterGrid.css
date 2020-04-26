@@ -1,0 +1,16 @@
+.crittergrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 25%);
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid #e3d9a8;
+  margin: 0em 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .crittergrid {
+    margin: 0em 1em;
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
+}
