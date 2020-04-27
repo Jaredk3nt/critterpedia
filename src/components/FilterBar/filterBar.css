@@ -46,7 +46,7 @@
   background-color: transparent;
   border: 2px solid #f6f5e1;
   border-radius: 0.125rem;
-  padding: 0.5rem 1em;
+  padding: 0.75em 1em;
   color: #727168;
 }
 
@@ -73,9 +73,13 @@
   }
 
   .filterbar-filters__select {
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-start;
   }
+  .filterbar-filters__select > button {
+    margin-bottom: .5em;
+  }
+
   .select-filters__spacer {
     height: 0.25rem;
   }
